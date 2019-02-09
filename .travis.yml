@@ -14,7 +14,7 @@ script:
 
 after_success:
   - docker --version
-  - pip install --user awscli
+  - pip install awscli
   - export PATH=~/.local/bin:$PATH
   - eval $(aws ecr get-login --region us-east-1)
   - docker build -t sdc .
