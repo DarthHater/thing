@@ -13,6 +13,8 @@ script:
   - echo "no tests"
 
 after_success:
+  - curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
+  - sudo chmod +x /usr/bin/ecs-deploy
   - docker --version
   - pip install awscli
   - export PATH=$PATH:$HOME/.local/bin
@@ -20,3 +22,4 @@ after_success:
   - docker build -t sdc .
   - docker tag sdc:latest $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
   - docker push $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
+  - ecs-deploy -c $CLUSTER_NAME -n $SERVICE_NAME -i $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
