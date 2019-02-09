@@ -5,9 +5,7 @@ node_js:
 services:
   - docker
 
-install:
-  - npm install
-  - webpack -p
+install: true
 
 after_success:
   - docker --version
