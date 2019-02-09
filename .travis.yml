@@ -1,9 +1,14 @@
+sudo: required
 language: python
 
 services:
   - docker
 
-install: true
+install:
+  - echo "install nothing"
+
+script:
+  - echo "no tests"
 
 after_success:
   - docker --version
