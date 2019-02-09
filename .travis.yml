@@ -13,7 +13,7 @@ script:
 after_success:
   - docker --version
   - pip install --user awscli
-  - export PATH=$PATH:$HOME/.local/bin
+  - export PATH=~/.local/bin:$PATH
   - eval $(aws ecr get-login --region us-east-1)
   - docker build -t sdc .
   - docker tag sdc:latest $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
