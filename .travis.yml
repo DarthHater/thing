@@ -1,0 +1,19 @@
+language: node_js
+node_js: 
+  - "10"
+
+services:
+  - docker
+
+install:
+  - npm install
+  - webpack -p
+
+after_success:
+  - docker --version
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
+  - eval $(aws ecr get-login --region us-east-1)
+  - docker build -t sdc .
+  - docker tag sdc:latest $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
+  - docker push $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
