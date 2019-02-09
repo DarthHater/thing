@@ -6,7 +6,6 @@
   "scripts": {
     "seed-mongo": "node ./database/seed-Mongo.js",
     "seed-pg": "node ./database/seed-PSQL.js",
-    "test": "jest",
     "build": "webpack",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon ./server/server.js",
