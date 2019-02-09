@@ -22,4 +22,4 @@ after_success:
   - docker build -t sdc .
   - docker tag sdc:latest $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
   - docker push $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
-  - ecs-deploy -c $CLUSTER_NAME -n $SERVICE_NAME -i $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
+  - ecs-deploy -c $CLUSTER_NAME -n $SERVICE_NAME -r us-east-1 -i $ECR_ID.dkr.ecr.us-east-1.amazonaws.com/sdc:latest
